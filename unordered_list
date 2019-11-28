@@ -1,0 +1,71 @@
+//UNORDERED LIST
+// Test.cpp : This file contains the 'main' function. Program execution begins and ends there.
+//
+#include "pch.h"
+#include <iostream>
+struct Node {
+int data;
+struct Node* next;
+};
+struct Node* head;
+void add();
+void Del();
+void View();
+void View() {
+struct Node* p = head;
+if (p == NULL) {
+std::cout << "\n\nList is empty\n";
+}
+else
+{
+while (p != NULL) {
+std::cout << p->data << " ";
+p = p->next;
+}
+std::cout << "\n";
+}
+}
+void add() {
+struct Node* p = (struct Node*)malloc(sizeof(struct Node));
+std::cout << "\n\nEnter value to add : ";
+std::cin >> p->data;
+p->next = NULL;
+p->next = head;
+head = p;
+}
+void Del() {
+std::cout << "\n\nEnter value to find and delete : ";
+int n;
+std::cin >> n;
+struct Node* p = head;
+while (p->next != NULL) {
+if (p->next->data == n) {
+struct Node* x = p->next;
+p->next = x->next;
+delete x;
+}
+p = p->next;
+}
+std::cout << "done";
+}
+int main()
+{
+int choice;
+do {
+std::cout << "\n\n1.Add new\n2.Delete\n3.View\n4.Exit\nEnter Choice : ";
+std::cin >> choice;
+switch (choice) {
+case 1:
+add();
+break;
+case 2:
+Del();
+break;
+case 3:
+View();
+break;
+case 4:
+exit(0);
+}
+} while (1);
+}
